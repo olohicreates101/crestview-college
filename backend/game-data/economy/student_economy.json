@@ -1,0 +1,52 @@
+[
+  {
+    "id": "allowance",
+    "name": "Allowance Budget",
+    "category": "social_expenditure",
+    "description": "Students often receive fixed or irregular money for transport, snacks, or small personal purchases. This shapes their everyday choices.",
+    "status": "MVP",
+    "story_value": "high",
+    "related_locations": ["canteen", "small_shops", "bus_stop"],
+    "related_characters": ["amaka", "chuka", "sandra"]
+  },
+  {
+    "id": "snack_budget",
+    "name": "Snack Budget",
+    "category": "daily_spending",
+    "description": "Small snacks are a common status and comfort item, especially in the canteen or nearby shops.",
+    "status": "MVP",
+    "story_value": "high",
+    "related_locations": ["canteen", "small_shops"],
+    "related_characters": ["amaka", "chuka", "sandra"]
+  },
+  {
+    "id": "transport_costs",
+    "name": "Transport Costs",
+    "category": "daily_spending",
+    "description": "Day students manage bus or travel costs, creating a practical and visible part of student life.",
+    "status": "MVP",
+    "story_value": "moderate",
+    "related_locations": ["bus_stop", "nearby_road"],
+    "related_characters": ["chuka", "sandra", "amaka"]
+  },
+  {
+    "id": "phone_credit",
+    "name": "Phone Credit",
+    "category": "private_expenditure",
+    "description": "Phone credit is a commonly discussed but symbolically charged expense for students who need discreet communication.",
+    "status": "MVP",
+    "story_value": "high",
+    "related_locations": ["small_shops", "bus_stop", "security_post"],
+    "related_characters": ["chuka", "amaka", "mysterious_student"]
+  },
+  {
+    "id": "school_essentials",
+    "name": "School Essentials",
+    "category": "basic_spending",
+    "description": "Books, pens, writing materials, and minor school supplies shape daily student reality and pressure.",
+    "status": "MVP",
+    "story_value": "moderate",
+    "related_locations": ["library", "ict_lab", "classrooms"],
+    "related_characters": ["students", "teachers"]
+  }
+]

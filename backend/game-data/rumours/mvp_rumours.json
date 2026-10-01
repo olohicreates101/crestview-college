@@ -1,0 +1,79 @@
+[
+  {
+    "id": "rumour_missing_item",
+    "name": "Missing Item Rumour",
+    "category": "school_mystery",
+    "summary": "A small but important item has gone missing, and students are debating who was seen near it last.",
+    "fuel": ["suspicion", "student gossip", "social pressure"],
+    "related_locations": ["school_gate", "corridors", "canteen", "library", "small_shops"],
+    "related_characters": ["amaka", "chuka", "sandra", "class_captain"],
+    "story_potential": ["blame spiral", "friendship friction", "hidden phone or secret compromise"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_cheating",
+    "name": "Cheating Rumour",
+    "category": "Academic",
+    "summary": "A rumour is spreading that someone is cheating in one of the laboratory or examination settings.",
+    "fuel": ["teacher suspicion", "friend group tension", "student fear"],
+    "related_locations": ["classrooms", "science_lab", "library", "ict_lab"],
+    "related_characters": ["mr_adeyemi", "amaka", "chuka", "class_captain"],
+    "story_potential": ["accusation", "public suspension", "social breakdown"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_prefect_cover_up",
+    "name": "Prefect Cover-Up Rumour",
+    "category": "leadership",
+    "summary": "A student leader is rumoured to be hiding a disciplinary issue or manipulating the narrative to protect their image.",
+    "fuel": ["status anxiety", "betrayal", "student resentment"],
+    "related_locations": ["assembly_ground", "principal_admin_block", "notice_boards"],
+    "related_characters": ["class_captain", "head_boy", "head_girl", "mr_adeyemi"],
+    "story_potential": ["leadership scandal", "student conflict", "pressure under visibility"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_late_night_outside",
+    "name": "Late-Night Outside Rumour",
+    "category": "boarding\u2014mystery",
+    "summary": "A student is rumoured to be leaving dorm or school property at night, and the details are increasingly hard to trust.",
+    "fuel": ["fear", "dorm gossip", "suspicion"],
+    "related_locations": ["hostel_blocks", "dorm_rooms", "nearby_road", "sick_bay"],
+    "related_characters": ["mysterious_student", "hostel_prefect", "school_nurse"],
+    "story_potential": ["night-time secrecy", "discipline conflict", "private danger"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_class_secret",
+    "name": "Class Secret Rumour",
+    "category": "social",
+    "summary": "A secret in the class is being discussed in whispers, and each person knows only part of it.",
+    "fuel": ["intellectual anxiety", "peer tension", "social status"],
+    "related_locations": ["classrooms", "corridors", "hall", "dining_hall"],
+    "related_characters": ["amaka", "sandra", "class_captain", "mr_adeyemi"],
+    "story_potential": ["frightening uncertainty", "critical moment in class culture", "small social breakdown"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_student_seen_restricted",
+    "name": "Student Seen in Restricted Place",
+    "category": "rule_breaking",
+    "summary": "A student was seen in a restricted place, and there is a quiet suspicion that the rule-breaking is not isolated.",
+    "fuel": ["authority anxiety", "gossip", "fear of punishment"],
+    "related_locations": ["sports_field", "nearby_road", "hostel_blocks", "canteen"],
+    "related_characters": ["mysterious_student", "security_guard", "hostel_prefect"],
+    "story_potential": ["investigation", "discipline escalation", "risk of exposure"],
+    "status": "MVP"
+  },
+  {
+    "id": "rumour_teacher_forgets_paper",
+    "name": "Teacher Forgets Paper Rumour",
+    "category": "low_stakes_gossip",
+    "summary": "A teacher is rumoured to have forgotten something important, and the student body is trying to interpret what that means.",
+    "fuel": ["idle gossip", "small social tension", "suspicion"],
+    "related_locations": ["staff_room", "classrooms", "corridors"],
+    "related_characters": ["mr_adeyemi", "students"],
+    "story_potential": ["small embarrassment", "teacher-humanising moment", "gossip turning serious"],
+    "status": "MVP"
+  }
+]

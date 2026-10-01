@@ -379,8 +379,17 @@ class StoryEngine:
         characters: dict[str, dict[str, Any]] = {}
         for path in sorted(directory.glob("*.json")):
             payload = json.loads(path.read_text(encoding="utf-8"))
-            character_id = payload.get("id", path.stem)
-            characters[character_id] = payload
+            entries: list[dict[str, Any]] = []
+
+            if isinstance(payload, list):
+                entries = [entry for entry in payload if isinstance(entry, dict)]
+            elif isinstance(payload, dict):
+                entries = [payload]
+
+            for entry in entries:
+                character_id = entry.get("id", path.stem)
+                characters[character_id] = entry
+
         return characters
 
     def load_episode(self, episode_id: str) -> Episode:

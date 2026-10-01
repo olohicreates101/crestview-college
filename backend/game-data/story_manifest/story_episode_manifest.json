@@ -1,0 +1,41 @@
+[
+  {
+    "id": "episode_1_school_day",
+    "title": "First School Day",
+    "phase": "Episode 1",
+    "status": "MVP",
+    "summary": "The player enters Crestview College and feels the rhythm of the school: order, social tension, reputation, and the first visible sign that everyone is carrying something private.",
+    "locations": ["school_gate", "assembly_ground", "corridors", "classrooms"],
+    "characters": ["amaka", "chuka", "sandra", "mr_adeyemi", "class_captain"],
+    "rumours": ["rumour_missing_item", "rumour_class_secret"],
+    "secrets": ["secret_hidden_phone", "secret_student_crush"],
+    "story_hooks": ["arrival tension", "visibility of social groups", "unfolding school gossip"],
+    "possible_endings": ["quiet comprehension", "social complication", "mild disciplinary consequence"]
+  },
+  {
+    "id": "episode_2_rule_pressure",
+    "title": "Rules Under The Surface",
+    "phase": "Episode 2",
+    "status": "MVP",
+    "summary": "A small rule issue becomes bigger because the school is heavily built around discipline, image, and student hierarchy. Gossip and authority interact in a way that keeps everyone on edge.",
+    "locations": ["security_post", "corridors", "classrooms", "library"],
+    "characters": ["security_guard", "mr_adeyemi", "class_captain", "mysterious_student"],
+    "rumours": ["rumour_student_seen_restricted", "rumour_prefect_cover_up"],
+    "secrets": ["secret_restricted_room_entry", "secret_biology_test_cheating"],
+    "story_hooks": ["phone confiscation", "teacher suspicion", "growing rule tension"],
+    "possible_endings": ["investigation", "cover-up", "student vindication"]
+  },
+  {
+    "id": "episode_3_hostel_night",
+    "title": "Night in the Hostel",
+    "phase": "Episode 3",
+    "status": "MVP",
+    "summary": "The school at night is different: quieter, more vulnerable, and full of secrets. Under hostel rules and the lights-out rhythm, something that looks small becomes personally significant.",
+    "locations": ["hostel_blocks", "dorm_rooms", "hostel_courtyard", "sick_bay"],
+    "characters": ["hostel_prefect", "mysterious_student", "school_nurse"],
+    "rumours": ["rumour_late_night_outside", "rumour_student_seen_restricted"],
+    "secrets": ["secret_dorm_member_sneaking_out", "secret_teacher_knows_family_issue"],
+    "story_hooks": ["midnight movement", "night anxiety", "private crisis"],
+    "possible_endings": ["confession", "discipline consequence", "quiet cover story"]
+  }
+]

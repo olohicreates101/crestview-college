@@ -1,0 +1,46 @@
+[
+  {
+    "id": "folklore_principal_voice",
+    "name": "The Principal's Voice",
+    "summary": "Students say that when the principal speaks in serious assembly, the mood changes instantly; everyone is expected to become smaller, quieter, and more serious.",
+    "source": "student culture",
+    "type": "school_story",
+    "status": "MVP",
+    "story_potential": ["scarcity of authority", "fear of public discipline", "social mood"],
+    "related_locations": ["assembly_ground", "principal_admin_block"],
+    "related_characters": ["principal", "students"]
+  },
+  {
+    "id": "folklore_hostel_tales",
+    "name": "The Hostel Tales",
+    "summary": "Boarders say the hostel is full of stories: late-night whispers, small acts of rebellion, and things that happen only when everyone is supposed to be sleeping.",
+    "source": "boarding culture",
+    "type": "boarding_story",
+    "status": "MVP",
+    "story_potential": ["night tension", "dorm intimacy", "rumour spikes"],
+    "related_locations": ["hostel_blocks", "dorm_rooms", "hostel_courtyard"],
+    "related_characters": ["hostel_prefect", "mysterious_student"]
+  },
+  {
+    "id": "folklore_forbidden_gate",
+    "name": "The Gate That Knows",
+    "summary": "Students joke that the school gate never misses a late or suspicious student, as if it keeps a record of who entered and who ran late.",
+    "source": "gossip culture",
+    "type": "school_lore",
+    "status": "MVP",
+    "story_potential": ["gate discipline", "late arrival pressure", "ambiguous authority"],
+    "related_locations": ["school_gate", "security_post"],
+    "related_characters": ["security_guard", "students"]
+  },
+  {
+    "id": "folklore_library_whispers",
+    "name": "The Library Whispers",
+    "summary": "The library is not silent; students say it carries the smallest conversations in a way that feels bigger than the words.",
+    "source": "student culture",
+    "type": "school_lore",
+    "status": "MVP",
+    "story_potential": ["quiet gossip", "private student tension", "hidden disclosure"],
+    "related_locations": ["library"],
+    "related_characters": ["amaka", "chuka", "school_librarian"]
+  }
+]

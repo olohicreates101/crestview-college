@@ -1,0 +1,56 @@
+[
+  {
+    "id": "phone_contact_teacher",
+    "name": "Teacher Contact",
+    "category": "school_contact",
+    "owner": "students",
+    "description": "A teacher contact can be represented in phone content as a school-related line of communication, but each student must manage how much access they actually have to it.",
+    "story_value": "moderate",
+    "status": "MVP"
+  },
+  {
+    "id": "phone_contact_parent",
+    "name": "Parent Contact",
+    "category": "family_contact",
+    "owner": "students",
+    "description": "Family contacts keep home life close and visible, especially in schools where parent relationship and discipline are important.",
+    "story_value": "moderate",
+    "status": "MVP"
+  },
+  {
+    "id": "phone_contact_friend",
+    "name": "Friend Contact",
+    "category": "social_contact",
+    "owner": "students",
+    "description": "Friend group chats and repeated contact structure daily student privacy and social rhythm.",
+    "story_value": "high",
+    "status": "MVP"
+  },
+  {
+    "id": "phone_ringtone_default",
+    "name": "Default Ringtone",
+    "category": "phone_profile",
+    "owner": "students",
+    "description": "Even a small default tone matters to school life because the sound of a phone is a social and disciplinary signal.",
+    "story_value": "low",
+    "status": "MVP"
+  },
+  {
+    "id": "phone_notification_message",
+    "name": "Message Notification",
+    "category": "notification",
+    "owner": "students",
+    "description": "Notifications represent the tension between hidden communication and school rules, especially when students are trying to stay discreet.",
+    "story_value": "high",
+    "status": "MVP"
+  },
+  {
+    "id": "phone_profile_school_mode",
+    "name": "School Mode",
+    "category": "profile_setting",
+    "owner": "students",
+    "description": "A simple profile or school-mode concept can reflect the pressure of being constantly reachable while technically restricted.",
+    "story_value": "moderate",
+    "status": "MVP"
+  }
+]

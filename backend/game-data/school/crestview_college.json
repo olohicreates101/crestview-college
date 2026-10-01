@@ -1,0 +1,52 @@
+{
+  "id": "crestview_college",
+  "name": "Crestview College",
+  "location": "Abuja, Nigeria",
+  "school_type": "mixed boarding and day secondary school with a private-school identity and government-aligned regulation",
+  "structure": "JSS1-JSS3 and SS1-SS3 with class streams, prefect hierarchy, house system, day/boarding split, and a strong academic discipline culture",
+  "status": "MVP",
+  "reputation": {
+    "academic": "strong in mathematics, sciences, and commerce",
+    "social": "serious, status-aware, and visibly structured",
+    "extracurricular": "solid but not elite; school pride matters and club culture is active",
+    "discipline": "strict but uneven; students know which teachers and prefects are feared and which are mostly tolerated"
+  },
+  "history": "Founded in the late 1990s by an educational trust seeking a disciplined, academically ambitious school for Abuja families. It grew rapidly and became known for exam performance, organised routines, and visible social hierarchy.",
+  "motto": "Discipline, Excellence, Character",
+  "school_colours": ["navy blue", "white", "gold"],
+  "uniform": [
+    "white shirt",
+    "navy-blue trousers or skirt",
+    "school blazer for senior students",
+    "school tie or striped ties in upper classes",
+    "neat polished shoes and tidy presentation"
+  ],
+  "discipline_culture": "Students are expected to be punctual, respectful, and visibly obedient. Teachers and prefects enforce rules with a mix of formal authority and social pressure. The school is not perfectly fair, but it has a clear moral code that students learn quickly.",
+  "parent_relationship": "Parents value grades, behaviour, and visible respectability. Good conduct matters almost as much as academic success, especially for families viewing Crestview as a middle-class route to stability and prestige.",
+  "community_relationship": "The school sits in a residential and commercial area, so nearby shops, transport routes, and local religious communities are part of student life. The school has reputation and prestige, but also a strong image of being strict or elitist.",
+  "hierarchy": [
+    "principal",
+    "vice_principals",
+    "heads_of_year",
+    "form_teachers",
+    "class_captains",
+    "prefects",
+    "house_captains",
+    "students"
+  ],
+  "house_system": {
+    "status": "MVP",
+    "details": "House competitions matter for sports and discipline points. House identity strengthens a student's visible school identity and creates real social rivalry without requiring a full sports management system.",
+    "houses": [
+      {"id": "house_blue", "name": "Blue House", "colour": "navy blue", "status": "MVP"},
+      {"id": "house_green", "name": "Green House", "colour": "green", "status": "MVP"},
+      {"id": "house_red", "name": "Red House", "colour": "red", "status": "MVP"},
+      {"id": "house_gold", "name": "Gold House", "colour": "gold", "status": "MVP"}
+    ]
+  },
+  "boarding_day_support": {
+    "boarding": "Boarders have structured routines, stronger dorm culture, and heavier scrutiny. They are more tied to school life and its social rhythms.",
+    "day_students": "Day students have more independence and more access to neighbourhood life, but less immersion in hostel culture and school routines.",
+    "status": "MVP"
+  }
+}

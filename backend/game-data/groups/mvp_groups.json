@@ -1,0 +1,93 @@
+[
+  {
+    "id": "popular_social",
+    "name": "Popular / Social Group",
+    "values": ["status", "visibility", "confidence", "social timing"],
+    "social_reputation": "high social power and significant visibility; can be highly respected or deeply disliked depending on the moment",
+    "common_locations": ["canteen", "hall", "corridors", "dining_hall"],
+    "leaders": ["sandra", "class_captain"],
+    "rival_groups": ["academic", "quiet"],
+    "common_activities": ["group conversations", "event attendance", "social strategy", "club gossip"],
+    "stereotypes": ["shallow", "image-driven", "only interested in status"],
+    "internal_reality": "Not all students in this group are fake or empty. Many are strategic, socially intelligent, and trying to survive school culture without becoming passive.",
+    "status": "MVP"
+  },
+  {
+    "id": "academic",
+    "name": "Academic Group",
+    "values": ["grades", "discipline", "study", "achievement"],
+    "social_reputation": "respected when results are strong; sometimes mocked as too serious or too rigid",
+    "common_locations": ["library", "ict_lab", "science_lab", "classrooms"],
+    "leaders": ["mr_adeyemi"],
+    "rival_groups": ["popular_social", "creative"],
+    "common_activities": ["study groups", "revision", "contest prep", "quiet collaboration"],
+    "stereotypes": ["bookish", "boring", "too concerned with marks"],
+    "internal_reality": "Many students in this group want to be taken seriously and are deeply aware of academic pressure, especially in SS1.",
+    "status": "MVP"
+  },
+  {
+    "id": "creative",
+    "name": "Creative Group",
+    "values": ["performance", "voice", "imagination", "identity"],
+    "social_reputation": "interesting and visible but sometimes seen as unserious by stricter staff",
+    "common_locations": ["hall", "library", "canteen", "sports_field"],
+    "leaders": [],
+    "rival_groups": ["academic", "student_leaders"],
+    "common_activities": ["drama", "music", "debate practice", "performances"],
+    "stereotypes": ["dramatic", "unreliable", "not disciplined"],
+    "internal_reality": "This group often contains students who are more expressive than the school expects, and who use art and performance as a form of survival.",
+    "status": "MVP"
+  },
+  {
+    "id": "sports",
+    "name": "Sports Group",
+    "values": ["fitness", "competition", "house pride", "discipline"],
+    "social_reputation": "strong public presence; students are respected for effort and visible energy",
+    "common_locations": ["sports_field", "hostel_courtyard", "dining_hall"],
+    "leaders": ["sports_captain"],
+    "rival_groups": ["popular_social", "student_leaders"],
+    "common_activities": ["training", "house games", "fitness routines", "event preparation"],
+    "stereotypes": ["loud", "physical", "less academically serious"],
+    "internal_reality": "Many sports students are disciplined and strategic, even when they are not academically visible.",
+    "status": "MVP"
+  },
+  {
+    "id": "hostel_clique",
+    "name": "Hostel Clique",
+    "values": ["solidarity", "routine", "quiet loyalty", "survival"],
+    "social_reputation": "very influential in boarding life and sometimes underestimated by day students",
+    "common_locations": ["hostel_blocks", "dorm_rooms", "dining_hall", "hostel_courtyard"],
+    "leaders": ["hostel_prefect"],
+    "rival_groups": ["student_leaders", "popular_social"],
+    "common_activities": ["hostel routines", "evening conversations", "informal study groups", "shared rule enforcement"],
+    "stereotypes": ["closed off", "strict", "only for boarders"],
+    "internal_reality": "Hostel life is not a single culture; it is a mixture of comfort, boredom, fear, solidarity, and quiet competition.",
+    "status": "MVP"
+  },
+  {
+    "id": "student_leaders",
+    "name": "Student Leaders",
+    "values": ["authority", "responsibility", "visible leadership", "order"],
+    "social_reputation": "high formal authority, but social power can be weaker than perceived",
+    "common_locations": ["assembly_ground", "principal_admin_block", "corridors"],
+    "leaders": ["class_captain", "head_boy", "head_girl"],
+    "rival_groups": ["popular_social", "hostel_clique"],
+    "common_activities": ["prefect duties", "announcements", "class coordination", "discipline checks"],
+    "stereotypes": ["bossy", "self-important", "only interested in rules"],
+    "internal_reality": "Many student leaders are anxious, pressured, and trying to keep their authority without completely alienating their peers.",
+    "status": "MVP"
+  },
+  {
+    "id": "quiet",
+    "name": "Quiet / Observant Group",
+    "values": ["calm", "privacy", "observation", "practical safety"],
+    "social_reputation": "not loud, but often underestimated; can become powerful when they decide to act",
+    "common_locations": ["library", "sick_bay", "nearby_road", "hostel_blocks"],
+    "leaders": ["mysterious_student"],
+    "rival_groups": ["popular_social", "student_leaders"],
+    "common_activities": ["observation", "quiet study", "low-key hangouts", "private meetings"],
+    "stereotypes": ["shy", "uninteresting", "dangerous or suspicious"],
+    "internal_reality": "This group is not just passive. They are often the ones who notice the truth and keep it close to themselves.",
+    "status": "MVP"
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "unexpected_rain",
+    "name": "Unexpected Rain",
+    "category": "weather",
+    "summary": "A sudden rainstorm disrupts movement, changes social patterns, and can create shelter-based conversations.",
+    "trigger_context": ["afternoon or after school"],
+    "related_locations": ["school_gate", "corridors", "bus_stop", "hostel_courtyard"],
+    "story_potential": ["shared waiting", "awkward conversation", "secret cooperation"],
+    "status": "MVP"
+  },
+  {
+    "id": "teacher_absence",
+    "name": "Teacher Absence",
+    "category": "school_routine",
+    "summary": "A teacher does not arrive, leaving students with extra free time and a rush of social activity.",
+    "trigger_context": ["during class hours"],
+    "related_locations": ["classrooms", "corridors", "canteen"],
+    "story_potential": ["gossip spike", "informal conversations", "minor rule-bending"],
+    "status": "MVP"
+  },
+  {
+    "id": "power_outage",
+    "name": "Power Outage",
+    "category": "school_routine",
+    "summary": "A short power cut changes the tone of the day, especially in the library or hostel, where the mood becomes quieter and more tense.",
+    "trigger_context": ["daytime or evening"],
+    "related_locations": ["library", "hostel_blocks", "dorm_rooms", "ict_lab"],
+    "story_potential": ["secretive movement", "low light social tension", "fear and whispering"],
+    "status": "MVP"
+  },
+  {
+    "id": "surprise_test",
+    "name": "Surprise Test",
+    "category": "academic",
+    "summary": "A teacher unexpectedly administers a quiz or short test, shifting the mood immediately.",
+    "trigger_context": ["class period"],
+    "related_locations": ["classrooms", "science_lab", "library"],
+    "story_potential": ["panic", "copying charges", "frantic support"],
+    "status": "MVP"
+  },
+  {
+    "id": "sudden_storm_and_traffic",
+    "name": "Sudden Storm and Traffic Crunch",
+    "category": "movement",
+    "summary": "A traffic delay or weather issue creates social pressure for commuters, especially near the gate and bus stop.",
+    "trigger_context": ["school dismissal", "late afternoon"],
+    "related_locations": ["school_gate", "bus_stop", "nearby_road"],
+    "story_potential": ["late departure", "group gathering", "class gossip"],
+    "status": "MVP"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {"id": "mathematics", "name": "Mathematics", "category": "core", "status": "MVP", "story_relevance": "high; central to academic pressure and teacher authority", "teacher_role_if_known": "mathematics_teacher"},
+  {"id": "english_language", "name": "English Language", "category": "core", "status": "MVP", "story_relevance": "high; language confidence and school communication matter in many scenes", "teacher_role_if_known": "english_teacher"},
+  {"id": "biology", "name": "Biology", "category": "science", "status": "MVP", "story_relevance": "high; practical work and academic trust matter here", "teacher_role_if_known": "biology_teacher"},
+  {"id": "chemistry", "name": "Chemistry", "category": "science", "status": "MVP", "story_relevance": "medium; strong practical pressure and school reputation", "teacher_role_if_known": "chemistry_teacher"},
+  {"id": "physics", "name": "Physics", "category": "science", "status": "MVP", "story_relevance": "medium; visible academic challenge and teacher authority", "teacher_role_if_known": "physics_teacher"},
+  {"id": "agricultural_science", "name": "Agricultural Science", "category": "science", "status": "MVP", "story_relevance": "medium; practical field activity and local context", "teacher_role_if_known": "agricultural_science_teacher"},
+  {"id": "economics", "name": "Economics", "category": "social_science", "status": "MVP", "story_relevance": "medium; useful in school politics and debate culture", "teacher_role_if_known": "economics_teacher"},
+  {"id": "government", "name": "Government", "category": "social_science", "status": "MVP", "story_relevance": "medium; supports discussion of leadership and student power", "teacher_role_if_known": "government_teacher"},
+  {"id": "literature", "name": "Literature", "category": "arts", "status": "MVP", "story_relevance": "medium; supports expression and creative identity", "teacher_role_if_known": "literature_teacher"},
+  {"id": "geography", "name": "Geography", "category": "social_science", "status": "MVP", "story_relevance": "low; context and world-building layer", "teacher_role_if_known": "geography_teacher"},
+  {"id": "civic_education", "name": "Civic Education", "category": "core", "status": "MVP", "story_relevance": "medium; useful for rules, school culture, and authority", "teacher_role_if_known": "civic_teacher"},
+  {"id": "computer_studies", "name": "Computer Studies", "category": "technology", "status": "MVP", "story_relevance": "high; ICT lab and club culture matter here", "teacher_role_if_known": "ict_teacher"},
+  {"id": "further_mathematics", "name": "Further Mathematics", "category": "core", "status": "PHASE_2", "story_relevance": "low in MVP; used for later academic differentiation", "teacher_role_if_known": "mathematics_teacher"},
+  {"id": "crs_irs", "name": "CRS/IRS", "category": "religion", "status": "MVP", "story_relevance": "medium; cultural and moral tone matters", "teacher_role_if_known": "religious_studies_teacher"},
+  {"id": "phe", "name": "Physical and Health Education", "category": "physical", "status": "MVP", "story_relevance": "medium; sports and school identity matter", "teacher_role_if_known": "phe_teacher"},
+  {"id": "business_studies", "name": "Business Studies", "category": "commercial", "status": "MVP", "story_relevance": "medium; supports school enterprise and youth dynamics", "teacher_role_if_known": "business_teacher"},
+  {"id": "french", "name": "French", "category": "elective", "status": "PHASE_2", "story_relevance": "low; later language and identity layer", "teacher_role_if_known": "french_teacher"},
+  {"id": "home_economics", "name": "Home Economics", "category": "elective", "status": "MVP", "story_relevance": "low; useful for domestic and practical school skills", "teacher_role_if_known": "home_economics_teacher"}
+]
