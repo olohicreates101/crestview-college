@@ -7,6 +7,7 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.game_state import GameAction, GameEngine, GameState, build_initial_world
+from app.phone import Contact, PhoneEngine
 
 ALLOWED_CONDITION_TYPES = {
     "FLAG_TRUE",
@@ -28,6 +29,9 @@ ALLOWED_CONSEQUENCE_TYPES = {
     "CHANGE_RELATIONSHIP",
     "ADD_MEMORY",
     "CHANGE_REPUTATION",
+    "ADD_CONTACT",
+    "SEND_MESSAGE",
+    "CREATE_NOTIFICATION",
 }
 
 
@@ -99,6 +103,14 @@ class Consequence(BaseModel):
     character_id: str | None = None
     delta: int | None = None
     text: str | None = None
+    sender_id: str | None = None
+    recipient_id: str | None = None
+    display_name: str | None = None
+    relationship_type: str | None = None
+    phone_number: str | None = None
+    title: str | None = None
+    body: str | None = None
+    notification_type: str | None = None
 
     @field_validator("type")
     @classmethod
@@ -112,6 +124,7 @@ class Consequence(BaseModel):
         items = story_state.setdefault("items", [])
         memories = story_state.setdefault("memories", [])
         relationship_scores = story_state.setdefault("relationship_scores", {})
+        phone_engine = story_state.get("phone_engine")
 
         if self.type == "SET_FLAG":
             if self.flag is None:
@@ -189,6 +202,86 @@ class Consequence(BaseModel):
             story_state["reputation"] = int((story_state.get("reputation", 0) or 0) + (self.amount or 0))
             return story_state["reputation"]
 
+        if self.type == "ADD_CONTACT":
+            if self.character_id is None and self.display_name is None:
+                raise ValueError("ADD_CONTACT requires a character_id or display_name.")
+            if phone_engine is None:
+                raise ValueError("Phone engine is required for ADD_CONTACT consequences.")
+            contact_id = self.character_id or self.display_name or "contact_unknown"
+            contact = Contact(
+                id=contact_id,
+                display_name=self.display_name or contact_id,
+                character_id=self.character_id,
+                phone_number=self.phone_number,
+                relationship_type=self.relationship_type or "friend",
+                is_known=self.character_id is not None,
+                is_blocked=False,
+            )
+            return phone_engine.add_contact(contact)
+
+        if self.type == "SEND_MESSAGE":
+            if phone_engine is None:
+                raise ValueError("Phone engine is required for SEND_MESSAGE consequences.")
+            if self.text is None:
+                raise ValueError("SEND_MESSAGE requires a text body.")
+            if self.recipient_id is None:
+                raise ValueError("SEND_MESSAGE requires a recipient_id.")
+
+            sender_id = self.sender_id
+            display_name = self.display_name or "Unknown Number"
+            if sender_id is None:
+                unknown_id = self.flag or "unknown_001"
+                existing = phone_engine.get_contact(unknown_id)
+                if existing is None:
+                    phone_engine.add_contact(
+                        Contact(
+                            id=unknown_id,
+                            display_name=display_name,
+                            character_id=None,
+                            phone_number=None,
+                            relationship_type="unknown",
+                            is_known=False,
+                            is_blocked=False,
+                        )
+                    )
+                sender_id = None
+
+            conversation = phone_engine.get_conversation_by_participants([self.recipient_id, sender_id or unknown_id])
+            if conversation is None:
+                conversation = phone_engine.create_conversation(
+                    participant_ids=[self.recipient_id, sender_id or unknown_id],
+                    title=display_name,
+                )
+
+            if sender_id is None:
+                message = phone_engine.receive_message(
+                    conversation_id=conversation.id,
+                    sender_id=None,
+                    recipient_ids=[self.recipient_id],
+                    text=self.text,
+                    story_relevant=True,
+                    story_event_id=self.flag,
+                )
+                return message
+
+            message = phone_engine.send_message(
+                conversation_id=conversation.id,
+                sender_id=sender_id,
+                recipient_ids=[self.recipient_id],
+                text=self.text,
+                story_relevant=True,
+                story_event_id=self.flag,
+            )
+            return message
+
+        if self.type == "CREATE_NOTIFICATION":
+            if phone_engine is None:
+                raise ValueError("Phone engine is required for CREATE_NOTIFICATION consequences.")
+            this_type = self.notification_type or "SYSTEM"
+            title = self.title or "System"
+            body = self.body or self.text or "System message"
+            return phone_engine.create_notification(this_type, title, body, related_entity_id=self.flag or self.character_id)
+
         raise ValueError(f"Unsupported consequence type: {self.type}")
 
 
@@ -256,6 +349,7 @@ class StoryEngine:
 
     def __init__(self, game_state: GameState | None = None) -> None:
         self.game_state = game_state or GameState(world=build_initial_world(), current_location="school_gate")
+        self.phone_engine = PhoneEngine(self.game_state)
         self.story_state: dict[str, Any] = {
             "flags": self.game_state.flags,
             "relationship_scores": {},
@@ -263,6 +357,8 @@ class StoryEngine:
             "money": 0,
             "memories": [],
             "reputation": 0,
+            "phone_engine": self.phone_engine,
+            "phone_state": self.phone_engine.phone_state,
         }
         self.characters = self._load_character_data()
         self.episode: Episode | None = None
@@ -329,6 +425,29 @@ class StoryEngine:
         self._apply_scene_entry(self.get_current_scene())
         return episode
 
+    def _trigger_unknown_message(self) -> None:
+        conversation = self.phone_engine.get_conversation_by_participants(["player", "unknown_001"])
+        if conversation is None:
+            conversation = self.phone_engine.create_conversation(["player", "unknown_001"], title="Unknown Number")
+
+        existing = [message for message in self.phone_engine.phone_state.messages.values() if message.conversation_id == conversation.id and message.text == "Welcome."]
+        if existing:
+            if not self.game_state.flags.get("mystery_message_received"):
+                self.game_state.flags["mystery_message_received"] = True
+                self.story_state["flags"]["mystery_message_received"] = True
+            return
+
+        self.phone_engine.receive_message(
+            conversation_id=conversation.id,
+            sender_id=None,
+            recipient_ids=["player"],
+            text="Welcome.",
+            story_relevant=True,
+            story_event_id="unknown_message_received",
+        )
+        self.game_state.flags["mystery_message_received"] = True
+        self.story_state["flags"]["mystery_message_received"] = True
+
     def get_scene(self, scene_id: str) -> Scene:
         if scene_id not in self.scenes:
             raise ValueError(f"Unknown scene id: {scene_id}")
@@ -353,6 +472,8 @@ class StoryEngine:
     def _apply_scene_entry(self, scene: Scene) -> None:
         for consequence in scene.entry_consequences:
             consequence.apply(self.game_state, self.story_state)
+        if scene.id == "unknown_message":
+            self._trigger_unknown_message()
 
     def _apply_scene_exit(self, scene: Scene) -> None:
         for consequence in scene.exit_consequences:
