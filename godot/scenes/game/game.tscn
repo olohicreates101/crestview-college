@@ -1,0 +1,41 @@
+[gd_scene format=3]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/Content"]
+layout_mode = 2
+text = "Crestview College"
+horizontal_alignment = 1
+
+[node name="Day" type="Label" parent="CenterContainer/Content"]
+layout_mode = 2
+text = "Monday"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="CenterContainer/Content"]
+layout_mode = 2
+text = "7:00 AM"
+horizontal_alignment = 1
+
+[node name="Location" type="Label" parent="CenterContainer/Content"]
+layout_mode = 2
+text = "School Gate"
+horizontal_alignment = 1
