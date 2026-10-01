@@ -1,0 +1,6 @@
+{
+  "id": "canteen",
+  "name": "Canteen",
+  "description": "The school canteen where students gather during breaks.",
+  "zone": "food"
+}

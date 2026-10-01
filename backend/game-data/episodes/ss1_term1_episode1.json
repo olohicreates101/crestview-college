@@ -1,0 +1,534 @@
+{
+  "episode": {
+    "id": "ss1_term1_episode1",
+    "title": "First Day",
+    "year": "SS1",
+    "term": 1,
+    "episode_number": 1,
+    "description": "On the first Monday of term, the player arrives at Crestview College and feels the rhythm of a new school year.",
+    "starting_scene_id": "school_gate_arrival",
+    "scene_ids": [
+      "school_gate_arrival",
+      "classroom_introduction",
+      "break_time",
+      "amaka_conversation",
+      "first_day_choice",
+      "unknown_message",
+      "end_of_day_hook"
+    ],
+    "completion_flag": "first_day_complete"
+  },
+  "scenes": [
+    {
+      "id": "school_gate_arrival",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "school_gate",
+      "title": "School Gate Arrival",
+      "characters": ["amaka", "mr_adeyemi"],
+      "dialogue": [
+        {
+          "id": "gate_amaka_1",
+          "speaker_id": "amaka",
+          "text": "Good morning. It looks like the new term is already busy.",
+          "emotion": "warm",
+          "conditions": []
+        },
+        {
+          "id": "gate_adeyemi_1",
+          "speaker_id": "mr_adeyemi",
+          "text": "Morning. Make sure you are ready for your first class.",
+          "emotion": "strict",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "enter_confidently",
+          "text": "Enter confidently.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "entered_school"
+            }
+          ],
+          "next_scene_id": "classroom_introduction"
+        },
+        {
+          "id": "look_around_first",
+          "text": "Look around first.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "noticed_school_environment"
+            }
+          ],
+          "next_scene_id": "classroom_introduction"
+        },
+        {
+          "id": "check_notice_board",
+          "text": "Check the school notice board.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "checked_notice_board"
+            }
+          ],
+          "next_scene_id": "classroom_introduction"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "classroom_introduction",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "classroom",
+      "title": "Classroom Introduction",
+      "characters": ["mr_adeyemi", "amaka", "chuka", "sandra"],
+      "dialogue": [
+        {
+          "id": "classroom_adeyemi_1",
+          "speaker_id": "mr_adeyemi",
+          "text": "Class, settle down. We are beginning the term with a fresh start and a clear focus.",
+          "emotion": "steady",
+          "conditions": []
+        },
+        {
+          "id": "classroom_amaka_1",
+          "speaker_id": "amaka",
+          "text": "I think this is going to be a good class. Everyone seems ready.",
+          "emotion": "warm",
+          "conditions": []
+        },
+        {
+          "id": "classroom_chuka_1",
+          "speaker_id": "chuka",
+          "text": "This is still the school year, but I am already trying to decide who I can copy homework from.",
+          "emotion": "playful",
+          "conditions": []
+        },
+        {
+          "id": "classroom_sandra_1",
+          "speaker_id": "sandra",
+          "text": "We will be watching everyone closely this term. It is always good to start well.",
+          "emotion": "confident",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "listen_to_adeyemi",
+          "text": "Listen carefully as Mr. Adeyemi begins the lesson.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "classroom_intro_done"
+            }
+          ],
+          "next_scene_id": "break_time"
+        },
+        {
+          "id": "greet_amaka",
+          "text": "Smile and greet Amaka.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "greeted_amaka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": 8
+            }
+          ],
+          "next_scene_id": "break_time"
+        },
+        {
+          "id": "join_chuka",
+          "text": "Join Chuka in the chatter.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "joined_chuka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "chuka",
+              "delta": 5
+            }
+          ],
+          "next_scene_id": "break_time"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "break_time",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "corridor",
+      "title": "Break Time",
+      "characters": ["amaka", "chuka", "sandra"],
+      "dialogue": [
+        {
+          "id": "break_chuka_1",
+          "speaker_id": "chuka",
+          "text": "The break is short, but it feels like the first real breath of the term.",
+          "emotion": "energetic",
+          "conditions": []
+        },
+        {
+          "id": "break_amaka_1",
+          "speaker_id": "amaka",
+          "text": "It is nice to have a few minutes before things get louder again.",
+          "emotion": "calm",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "stay_with_classmates",
+          "text": "Stay with your classmates in the corridor.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "stayed_with_classmates"
+            }
+          ],
+          "next_scene_id": "amaka_conversation"
+        },
+        {
+          "id": "go_to_canteen",
+          "text": "Go to the canteen.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "MOVE_PLAYER",
+              "target": "canteen",
+              "minutes": 5
+            }
+          ],
+          "next_scene_id": "amaka_conversation"
+        },
+        {
+          "id": "explore_corridor",
+          "text": "Explore the corridor.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "explored_corridor"
+            }
+          ],
+          "next_scene_id": "amaka_conversation"
+        },
+        {
+          "id": "go_outside",
+          "text": "Go outside for a moment.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "MOVE_PLAYER",
+              "target": "outdoor_area",
+              "minutes": 5
+            }
+          ],
+          "next_scene_id": "amaka_conversation"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "amaka_conversation",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "canteen",
+      "title": "Amaka Conversation",
+      "characters": ["amaka"],
+      "dialogue": [
+        {
+          "id": "amaka_conversation_1",
+          "speaker_id": "amaka",
+          "text": "You seem calm for a first day. Are you settling in well?",
+          "emotion": "curious",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "be_friendly",
+          "text": "Be friendly and talk a little.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "friendly_with_amaka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": 12
+            }
+          ],
+          "next_scene_id": "first_day_choice"
+        },
+        {
+          "id": "be_cautious",
+          "text": "Be cautious and keep your guard up.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "cautious_with_amaka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": -3
+            }
+          ],
+          "next_scene_id": "first_day_choice"
+        },
+        {
+          "id": "joke",
+          "text": "Make a light joke to ease the mood.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "joked_with_amaka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": 7
+            }
+          ],
+          "next_scene_id": "first_day_choice"
+        },
+        {
+          "id": "ask_about_school",
+          "text": "Ask about the school and the classes.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "asked_about_school"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": 6
+            }
+          ],
+          "next_scene_id": "first_day_choice"
+        },
+        {
+          "id": "keep_to_themselves",
+          "text": "Keep to yourself and listen.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "kept_to_self"
+            }
+          ],
+          "next_scene_id": "first_day_choice"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "first_day_choice",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "corridor",
+      "title": "First Day Social Choice",
+      "characters": ["amaka", "chuka", "sandra"],
+      "dialogue": [
+        {
+          "id": "first_day_choice_1",
+          "speaker_id": "chuka",
+          "text": "Anyone coming with me? The school feels different once the bell goes for the next class.",
+          "emotion": "friendly",
+          "conditions": []
+        },
+        {
+          "id": "first_day_choice_2",
+          "speaker_id": "sandra",
+          "text": "You can decide your energy. The day is only beginning.",
+          "emotion": "calm",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "stay_with_amaka",
+          "text": "Stay with Amaka.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "stayed_with_amaka"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "amaka",
+              "delta": 4
+            }
+          ],
+          "next_scene_id": "unknown_message"
+        },
+        {
+          "id": "join_chuka",
+          "text": "Join Chuka.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "joined_chuka_later"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "chuka",
+              "delta": 4
+            }
+          ],
+          "next_scene_id": "unknown_message"
+        },
+        {
+          "id": "follow_sandra",
+          "text": "Follow Sandra.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "followed_sandra"
+            },
+            {
+              "type": "CHANGE_RELATIONSHIP",
+              "character_id": "sandra",
+              "delta": 6
+            }
+          ],
+          "next_scene_id": "unknown_message"
+        },
+        {
+          "id": "explore_alone",
+          "text": "Explore alone.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "explored_alone"
+            }
+          ],
+          "next_scene_id": "unknown_message"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "unknown_message",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "corridor",
+      "title": "Unknown Message",
+      "characters": ["mysterious_student"],
+      "dialogue": [
+        {
+          "id": "unknown_message_1",
+          "speaker_id": "mysterious_student",
+          "text": "Welcome.",
+          "emotion": "quiet",
+          "conditions": []
+        }
+      ],
+      "choices": [
+        {
+          "id": "read_the_message",
+          "text": "Read the message and look around.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "mystery_message_received"
+            }
+          ],
+          "next_scene_id": "end_of_day_hook"
+        },
+        {
+          "id": "leave_school",
+          "text": "Ignore it for now and leave school.",
+          "conditions": [],
+          "consequences": [
+            {
+              "type": "SET_FLAG",
+              "flag": "mystery_message_received"
+            }
+          ],
+          "next_scene_id": "end_of_day_hook"
+        }
+      ],
+      "conditions": [],
+      "entry_consequences": [
+        {
+          "type": "SET_FLAG",
+          "flag": "mystery_message_received"
+        }
+      ],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": false
+    },
+    {
+      "id": "end_of_day_hook",
+      "episode_id": "ss1_term1_episode1",
+      "location_id": "school_gate",
+      "title": "End of Day Hook",
+      "characters": ["mysterious_student"],
+      "dialogue": [
+        {
+          "id": "end_hook_1",
+          "speaker_id": "mysterious_student",
+          "text": "The first day ends, but the school still has a secret to keep.",
+          "emotion": "watchful",
+          "conditions": []
+        }
+      ],
+      "choices": [],
+      "conditions": [],
+      "entry_consequences": [
+        {
+          "type": "SET_FLAG",
+          "flag": "first_day_complete"
+        }
+      ],
+      "exit_consequences": [],
+      "next_scene_id": null,
+      "is_terminal": true
+    }
+  ]
+}
