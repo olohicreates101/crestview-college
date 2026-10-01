@@ -100,6 +100,28 @@ To run the story-engine tests:
 python -m pytest -q tests/test_story_engine.py
 ```
 
+## Phase 7 — Controlled AI Conversation
+
+Phase 7 introduces a controlled AI conversation pipeline that keeps the game engine as the source of truth. The AI can interpret a player message, identify intent, generate character-appropriate dialogue, and propose safe relationship effects, but it cannot directly mutate `GameState`, create secrets, alter world state, or decide story progression. All game-affecting outcomes remain validated and applied by the existing rules layer.
+
+The architecture is intentionally narrow:
+
+- `ConversationIntent` captures the parsed intent and metadata.
+- `ConversationContext` creates a limited view of the player, character, relationship, flags, and relevant memory only.
+- `AIProvider` defines the provider abstraction for model access.
+- `MockAIProvider` is deterministic and offline-friendly for tests.
+- `IntentParser` classifies a player message into a controlled set of intents such as `TALK`, `ASK`, `LIE`, `APOLOGIZE`, `HELP`, `REFUSE`, `AGREE`, `DISAGREE`, `INVESTIGATE`, and `LEAVE`.
+- `ContextBuilder` filters the context down to relevant details and avoids hidden or private knowledge.
+- `ResponseValidator` rejects invented names, invented locations, made-up secrets, forbidden knowledge, and direct state-modifying instructions.
+- `ConversationService` coordinates parsing, context building, AI generation, validation, and fallback behavior.
+- `StoryEngine.start_ai_conversation()` adds a controlled first-day Amaka interaction without changing the existing narrative flow or allowing AI to be the director of the story.
+
+Fallback behavior is character-specific and kept light. If the provider fails or a response is invalid, the system uses a safe authored fallback line instead of a generic "Sorry, I don't understand." response.
+
+### Why the AI cannot control the game state
+
+The AI is treated as a character actor, not a world-authoring system. It may generate dialogue and tone, but it cannot directly set flags, change money, create items, move the player, or decide hidden story progression. Any approved effect is treated as a proposed consequence and must pass validation before the game engine or story layer may act on it.
+
 ## Run tests
 
 From the `backend` directory, with the virtual environment active:

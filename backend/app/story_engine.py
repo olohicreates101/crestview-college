@@ -6,6 +6,7 @@ from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from app.ai_conversation import ConversationService
 from app.game_state import GameAction, GameEngine, GameState, build_initial_world
 from app.phone import Contact, PhoneEngine
 
@@ -357,9 +358,11 @@ class StoryEngine:
             "money": 0,
             "memories": [],
             "reputation": 0,
+            "recent_conversation": [],
             "phone_engine": self.phone_engine,
             "phone_state": self.phone_engine.phone_state,
         }
+        self.conversation_service = ConversationService(self.game_state, self.story_state)
         self.characters = self._load_character_data()
         self.episode: Episode | None = None
         self.active_episode_id: str | None = None
@@ -474,6 +477,13 @@ class StoryEngine:
             consequence.apply(self.game_state, self.story_state)
         if scene.id == "unknown_message":
             self._trigger_unknown_message()
+
+    def start_ai_conversation(self, character_id: str, player_message: str, provider: Any | None = None) -> Any:
+        response = self.conversation_service.process(character_id, player_message, provider=provider)
+        self.story_state.setdefault("recent_conversation", [])
+        self.story_state["recent_conversation"].append(f"player: {player_message}")
+        self.story_state["recent_conversation"].append(f"{character_id}: {response.dialogue}")
+        return response
 
     def _apply_scene_exit(self, scene: Scene) -> None:
         for consequence in scene.exit_consequences:
