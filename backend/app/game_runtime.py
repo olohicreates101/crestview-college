@@ -29,10 +29,12 @@ class GameRuntime:
         save_service: GameSaveService | None = None,
         session_id: str | None = None,
         player_id: str = "player",
+        player_name: str | None = None,
         episode_id: str | None = None,
     ) -> None:
         self.session_id = session_id or str(uuid.uuid4())
         self.player_id = player_id
+        self.player_name = player_name or player_id
         self.session_started_at = datetime.now(UTC)
 
         self.game_state = game_state or GameState(world=build_initial_world(), current_location="school_gate")
@@ -59,12 +61,13 @@ class GameRuntime:
         self.active_episode_id: str | None = None
 
         if episode_id is not None:
-            self.start_session(player_id=self.player_id, episode_id=episode_id)
+            self.start_session(player_id=self.player_id, player_name=self.player_name, episode_id=episode_id)
         else:
             self._sync_runtime_state()
 
-    def start_session(self, player_id: str = "player", episode_id: str | None = None) -> GameState:
+    def start_session(self, player_id: str = "player", player_name: str | None = None, episode_id: str | None = None) -> GameState:
         self.player_id = player_id
+        self.player_name = player_name or player_id
         self.session_id = str(uuid.uuid4())
         self.session_started_at = datetime.now(UTC)
 
@@ -183,7 +186,7 @@ class GameRuntime:
         snapshot = {
             "player": {
                 "id": self.player_id,
-                "name": self.player_id,
+                "name": self.player_name,
                 "money": float(story_state.get("money", 0)),
                 "current_location": self.game_state.current_location,
                 "current_mood": "focused",
@@ -255,6 +258,7 @@ class GameRuntime:
         self.story_engine.story_state["completed_episodes"] = runtime_snapshot.get("story_state", {}).get("completed_episodes", [])
         self.active_episode_id = runtime_snapshot.get("story_state", {}).get("current_episode")
         self.player_id = str(runtime_snapshot.get("player", {}).get("id", self.player_id))
+        self.player_name = str(runtime_snapshot.get("player", {}).get("name", self.player_name))
         self.runtime_state = runtime_snapshot
         self.game_state.runtime_state = runtime_snapshot
         return self.game_state

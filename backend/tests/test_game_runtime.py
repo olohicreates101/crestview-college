@@ -1,7 +1,33 @@
 from __future__ import annotations
 
+import httpx
+import pytest
+
 from app.game_runtime import GameRuntime
 from app.game_state import GameAction
+from app.main import app
+
+
+@pytest.mark.anyio
+async def test_create_game_session_route_starts_new_session() -> None:
+    player_name = "Ada"
+    transport = httpx.ASGITransport(app=app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post(
+            "/game/sessions",
+            json={"player_id": "player-1", "player_name": player_name, "episode_id": "ss1_term1_episode1"},
+        )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["status"] == "active"
+    assert payload["player_id"] == "player-1"
+    assert payload["player_name"] == "Ada"
+    assert payload["current_location"] == "school_gate"
+    assert payload["scene_id"] == "school_gate_arrival"
+    assert payload["game_state"]["player"]["name"] == "Ada"
+    assert payload["active_characters"] == ["amaka", "mr_adeyemi"]
+    assert set(payload["game_state"]["npcs"]).issuperset({"amaka", "chuka", "sandra", "mr_adeyemi", "mysterious_student"})
 
 
 def test_runtime_starts_session_and_tracks_core_systems() -> None:

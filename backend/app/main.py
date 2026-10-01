@@ -6,6 +6,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from app.config import settings
+from app.game_runtime import GameRuntime
 from app.game_state import GameState, build_initial_world
 from app.persistence import GameSaveService, SaveValidationError
 
@@ -28,9 +29,57 @@ class SaveResponse(BaseModel):
     game_version: str
 
 
+class GameSessionRequest(BaseModel):
+    player_id: str | None = None
+    player_name: str | None = None
+    episode_id: str = "ss1_term1_episode1"
+
+
 @app.get("/health")
 def health_check() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.post("/game/sessions")
+def create_game_session(request: GameSessionRequest) -> dict[str, Any]:
+    runtime = GameRuntime(
+        player_id=request.player_id or "player",
+        player_name=request.player_name or (request.player_id or "player"),
+        episode_id=request.episode_id,
+    )
+
+    scene = runtime.story_engine.get_current_scene()
+    choices = runtime.story_engine.get_available_choices()
+    payload = runtime.snapshot()
+
+    # Scene-local active characters come from the authored episode data. The NPC
+    # registry still stores the full simulated world roster, which may include
+    # characters not currently present in the active scene.
+    active_characters = list(scene.characters)
+
+    return {
+        "status": "active",
+        "session_id": runtime.session_id,
+        "player_id": runtime.player_id,
+        "player_name": runtime.player_name,
+        "episode_id": runtime.story_engine.active_episode_id,
+        "scene_id": scene.id,
+        "scene_title": scene.title,
+        "location_id": runtime.game_state.current_location,
+        "current_location": runtime.game_state.current_location,
+        "day_of_week": runtime.game_state.clock.day_of_week,
+        "time_of_day": f"{runtime.game_state.clock.hour:02d}:{runtime.game_state.clock.minute:02d}",
+        "active_characters": active_characters,
+        "available_choices": [
+            {
+                "id": choice.id,
+                "text": choice.text,
+                "next_scene_id": choice.next_scene_id,
+            }
+            for choice in choices
+        ],
+        "game_state": payload,
+    }
 
 
 @app.post("/saves", response_model=SaveResponse)
