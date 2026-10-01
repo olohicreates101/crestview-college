@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import uuid
 
-from sqlalchemy import JSON, CheckConstraint, String, UniqueConstraint
+from sqlalchemy import JSON, CheckConstraint, ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.database import Base
@@ -20,8 +20,8 @@ class Relationship(Base):
     )
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True, default=lambda: str(uuid.uuid4()))
-    player_id: Mapped[str] = mapped_column(String(64), nullable=False)
-    npc_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    player_id: Mapped[str] = mapped_column(ForeignKey("players.id"), nullable=False)
+    npc_id: Mapped[str] = mapped_column(ForeignKey("npcs.id"), nullable=False)
     trust: Mapped[int] = mapped_column(nullable=False, default=0)
     closeness: Mapped[int] = mapped_column(nullable=False, default=0)
     respect: Mapped[int] = mapped_column(nullable=False, default=0)
@@ -30,5 +30,5 @@ class Relationship(Base):
     status: Mapped[str] = mapped_column(String(30), nullable=False, default="stranger")
     history: Mapped[list] = mapped_column(JSON, default=list, nullable=False)
 
-    player = relationship("Player", back_populates="relationships")
-    npc = relationship("NPC", back_populates="relationships")
+    player = relationship("Player", back_populates="relationships", foreign_keys=[player_id])
+    npc = relationship("NPC", back_populates="relationships", foreign_keys=[npc_id])

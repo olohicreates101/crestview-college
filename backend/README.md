@@ -122,6 +122,58 @@ Fallback behavior is character-specific and kept light. If the provider fails or
 
 The AI is treated as a character actor, not a world-authoring system. It may generate dialogue and tone, but it cannot directly set flags, change money, create items, move the player, or decide hidden story progression. Any approved effect is treated as a proposed consequence and must pass validation before the game engine or story layer may act on it.
 
+## Phase 9 — Persistence and Save/Load
+
+Phase 9 adds a game-save persistence layer that serializes the current `GameState` and a runtime snapshot into PostgreSQL without replacing the in-memory runtime model. The architecture keeps the database as a durable store and the active `GameState` as the authoritative runtime state. Save data is versioned and validated before it is reloaded.
+
+### Save architecture
+
+- `app/persistence/save_service.py` owns serialization, validation, and load logic.
+- `app/db/models/save.py` stores a single save record with `game_version`, `schema_version`, and the serialized payload.
+- `GameSaveService.save_game()` writes a complete snapshot in a transaction.
+- `GameSaveService.load_game()` validates the schema and restores the `GameState` world, clock, flags, and runtime data.
+- A save can preserve runtime details such as inventory, relationship state, phone state, story progress, secrets, rumours, memory records, and NPC runtime state.
+
+### Save versioning
+
+The persistence layer uses a simple versioned schema:
+
+- `game_version`: current game version label
+- `schema_version`: monotonically increasing save schema version
+
+Older saves are rejected with a clear validation error instead of being silently altered.
+
+### API endpoints
+
+The existing FastAPI app now includes minimal persistence endpoints:
+
+```http
+POST /saves
+GET /saves
+GET /saves/{save_id}
+DELETE /saves/{save_id}
+```
+
+These endpoints accept or return JSON-safe data only. They do not expose SQLAlchemy models directly.
+
+### Persistence tests
+
+To run the save/load tests:
+
+```powershell
+python -m pytest -q tests/test_persistence.py
+```
+
+### PostgreSQL requirements
+
+The project keeps PostgreSQL support alongside the existing SQLAlchemy setup. If a local PostgreSQL instance is not configured, the repository-layer database tests remain skipped as before. The save/load logic itself is tested without needing a running database.
+
+### Known limitations
+
+- The persistence layer is intentionally focused on explicit JSON-safe serialization and validation.
+- It does not add a full autosave scheduler or multi-slot save management yet.
+- It preserves the runtime snapshot the project already supports, but does not invent a new gameplay engine or duplicate the existing `GameState` model.
+
 ## Run tests
 
 From the `backend` directory, with the virtual environment active:

@@ -36,4 +36,4 @@ class Player(Base):
     current_mood: Mapped[str] = mapped_column(String(50), nullable=False)
 
     inventory = relationship("PlayerInventory", back_populates="player", cascade="all, delete-orphan")
-    relationships = relationship("Relationship", back_populates="player", cascade="all, delete-orphan")
+    relationships = relationship("Relationship", back_populates="player", cascade="all, delete-orphan", foreign_keys="Relationship.player_id")

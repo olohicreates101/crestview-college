@@ -30,4 +30,4 @@ class NPC(Base):
     slang_level: Mapped[int] = mapped_column(nullable=False, default=0)
     tier: Mapped[str] = mapped_column(String(20), nullable=False, default="supporting")
 
-    relationships = relationship("Relationship", back_populates="npc", cascade="all, delete-orphan")
+    relationships = relationship("Relationship", back_populates="npc", cascade="all, delete-orphan", foreign_keys="Relationship.npc_id")

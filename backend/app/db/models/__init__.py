@@ -4,6 +4,7 @@ from .npc import NPC
 from .player import Player
 from .relationship import Relationship
 from .rumour import Rumour
+from .save import SaveGameRecord
 from .secret import Secret, SecretKnowledge
 from .story import StoryProgress
 
@@ -15,6 +16,7 @@ __all__ = [
     "PlayerInventory",
     "Relationship",
     "Rumour",
+    "SaveGameRecord",
     "Secret",
     "SecretKnowledge",
     "StoryProgress",
